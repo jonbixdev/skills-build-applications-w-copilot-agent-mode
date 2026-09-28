@@ -1,11 +1,14 @@
 import { Trophy } from 'lucide-react'
 import { CollectionView } from './CollectionView.jsx'
-import { API_BASE_URL } from '../api.js'
 import { useCollection } from '../hooks/useCollection.js'
 import { shortId } from '../lib/format.js'
 
+const leaderboardEndpoint = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+  : 'http://localhost:8000/api/leaderboard/'
+
 function Leaderboard() {
-  const { items, loading, error } = useCollection(`${API_BASE_URL}/api/leaderboard/`)
+  const { items, loading, error } = useCollection(leaderboardEndpoint)
 
   return (
     <CollectionView

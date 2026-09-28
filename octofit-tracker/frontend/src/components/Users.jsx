@@ -1,7 +1,10 @@
 import { Mail, UserRound } from 'lucide-react'
 import { CollectionView } from './CollectionView.jsx'
-import { API_BASE_URL } from '../api.js'
 import { useCollection } from '../hooks/useCollection.js'
+
+const usersEndpoint = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/users/`
+  : 'http://localhost:8000/api/users/'
 
 function initials(name) {
   return String(name || '?')
@@ -13,7 +16,7 @@ function initials(name) {
 }
 
 function Users() {
-  const { items, loading, error } = useCollection(`${API_BASE_URL}/api/users/`)
+  const { items, loading, error } = useCollection(usersEndpoint)
 
   return (
     <CollectionView

@@ -1,10 +1,13 @@
 import { Clock3, Dumbbell } from 'lucide-react'
 import { CollectionView } from './CollectionView.jsx'
-import { API_BASE_URL } from '../api.js'
 import { useCollection } from '../hooks/useCollection.js'
 
+const workoutsEndpoint = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+  : 'http://localhost:8000/api/workouts/'
+
 function Workouts() {
-  const { items, loading, error } = useCollection(`${API_BASE_URL}/api/workouts/`)
+  const { items, loading, error } = useCollection(workoutsEndpoint)
 
   return (
     <CollectionView

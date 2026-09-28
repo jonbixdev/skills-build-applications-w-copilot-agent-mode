@@ -1,10 +1,13 @@
 import { UsersRound } from 'lucide-react'
 import { CollectionView } from './CollectionView.jsx'
-import { API_BASE_URL } from '../api.js'
 import { useCollection } from '../hooks/useCollection.js'
 
+const teamsEndpoint = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+  : 'http://localhost:8000/api/teams/'
+
 function Teams() {
-  const { items, loading, error } = useCollection(`${API_BASE_URL}/api/teams/`)
+  const { items, loading, error } = useCollection(teamsEndpoint)
 
   return (
     <CollectionView

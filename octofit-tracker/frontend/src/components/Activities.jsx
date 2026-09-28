@@ -1,11 +1,14 @@
 import { CalendarDays, Flame, Footprints } from 'lucide-react'
 import { CollectionView } from './CollectionView.jsx'
-import { API_BASE_URL } from '../api.js'
 import { useCollection } from '../hooks/useCollection.js'
 import { formatDate, shortId } from '../lib/format.js'
 
+const activitiesEndpoint = import.meta.env.VITE_CODESPACE_NAME?.trim()
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+  : 'http://localhost:8000/api/activities/'
+
 function Activities() {
-  const { items, loading, error } = useCollection(`${API_BASE_URL}/api/activities/`)
+  const { items, loading, error } = useCollection(activitiesEndpoint)
 
   return (
     <CollectionView
