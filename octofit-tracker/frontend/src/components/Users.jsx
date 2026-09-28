@@ -1,5 +1,6 @@
 import { Mail, UserRound } from 'lucide-react'
 import { CollectionView } from './CollectionView.jsx'
+import { API_BASE_URL } from '../api.js'
 import { useCollection } from '../hooks/useCollection.js'
 
 function initials(name) {
@@ -12,7 +13,7 @@ function initials(name) {
 }
 
 function Users() {
-  const { items, loading, error } = useCollection('users')
+  const { items, loading, error } = useCollection(`${API_BASE_URL}/api/users/`)
 
   return (
     <CollectionView

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
-export function useCollection(resource) {
+export function useCollection(endpoint) {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -9,7 +9,7 @@ export function useCollection(resource) {
   useEffect(() => {
     const controller = new AbortController()
 
-    fetchCollection(resource, controller.signal)
+    fetchCollection(endpoint, controller.signal)
       .then(setItems)
       .catch((requestError) => {
         if (requestError.name !== 'AbortError') {
@@ -21,7 +21,7 @@ export function useCollection(resource) {
       })
 
     return () => controller.abort()
-  }, [resource])
+  }, [endpoint])
 
   return { items, loading, error }
 }

@@ -1,9 +1,10 @@
 import { Clock3, Dumbbell } from 'lucide-react'
 import { CollectionView } from './CollectionView.jsx'
+import { API_BASE_URL } from '../api.js'
 import { useCollection } from '../hooks/useCollection.js'
 
 function Workouts() {
-  const { items, loading, error } = useCollection('workouts')
+  const { items, loading, error } = useCollection(`${API_BASE_URL}/api/workouts/`)
 
   return (
     <CollectionView
