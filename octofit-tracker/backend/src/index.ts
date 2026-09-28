@@ -5,6 +5,7 @@ import database from './config/database.js';
 import apiRouter from './routes/api.js';
 
 const app = express();
+
 const port = 8000;
 
 app.use(cors());
